@@ -10,6 +10,7 @@ public class Hangman {
     private String[] wordArr;
     private String guess;
     private List<String> clue = new ArrayList<String>();
+    private List<String> goodLetters = new ArrayList<String>();
 
     public Hangman(String word) {
         this.word = word;
@@ -29,10 +30,14 @@ public class Hangman {
         return this.clue;
     }
 
+//    public List<String> getGoodLetters() {
+//
+//    }
+
     public String returnStringClue() {
         getClue();
         String stringClue = "";
-        for (String s : this.clue){
+        for (String s : this.clue) {
             stringClue += s + " ";
         }
         return stringClue.trim();
@@ -45,13 +50,23 @@ public class Hangman {
     public void setClue(String guess) {
         getWordArr();
         getClue();
+        goodLetters.add(guess);
+        this.clue.removeAll(clue);
+
         for (int i = 0; i < this.wordArr.length; i++) {
-            if (wordArr[i] == guess) {
-                this.clue.add(guess);
+            if (goodLetters.contains(wordArr[i])) {
+                this.clue.add(wordArr[i]);
             } else {
                 this.clue.add("_");
             }
         }
+//        for (int i = 0; i < this.wordArr.length; i++) {
+//            if (wordArr[i].equals(guess)) {
+//                this.clue.add(guess);
+//            } else {
+//                this.clue.add("_");
+//            }
+//        }
     }
 
     public void setGuess(String guess) {

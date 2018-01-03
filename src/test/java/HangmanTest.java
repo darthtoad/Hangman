@@ -38,6 +38,21 @@ public class HangmanTest {
         assertEquals("_ _ _ _ _", testHangman.returnStringClue());
     }
 
+    @Test
+    public void returnStringClue_setCorrectClue_aAndDashes() throws Exception {
+        Hangman testHangman = new Hangman("apple");
+        testHangman.setClue("p");
+        assertEquals("_ p p _ _", testHangman.returnStringClue());
+    }
+
+    @Test
+    public void returnStringClue_rememberAndReturnOldClues_app__() throws Exception {
+        Hangman testHangman = new Hangman("apple");
+        testHangman.setClue("p");
+        testHangman.setClue("a");
+        assertEquals("a p p _ _", testHangman.returnStringClue());
+    }
+
 //    @Test
 //    public void newHangman_getClue_dashes() throws Exception {
 //        Hangman testHangman = new Hangman("apple");
