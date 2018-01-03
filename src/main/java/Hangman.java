@@ -1,23 +1,27 @@
 /**
  * Created by Guest on 1/3/18.
  */
+import java.util.Arrays;
 import java.util.Random;
 import java.util.List;
 import java.util.ArrayList;
 
 public class Hangman {
     private String word;
+    private String[] arrayOfWords = {"apple", "banana", "almond", "programmer", "penguin", "quayle"};
     private String[] wordArr;
     private String guess;
     private List<String> clue = new ArrayList<String>();
     private List<String> goodLetters = new ArrayList<String>();
-    private boolean win = false;
+    private Boolean win = false;
+    private int loseNumber = 0;
 
     public Hangman(String word) {
         this.word = word;
         this.wordArr = word.split("");
         this.clue = clue;
         this.win = win;
+        this.loseNumber = loseNumber;
     }
 
     public String getGuess() {
@@ -32,13 +36,23 @@ public class Hangman {
         return this.clue;
     }
 
-    public boolean getWin() {
+    public Boolean getWin() {
         return this.win;
+    }
+
+    public int getLoseNumber() {
+        return this.loseNumber;
     }
 
 //    public List<String> getGoodLetters() {
 //
 //    }
+
+    public void setWord(String[] array) {
+        Random random = new Random();
+        int select = random.nextInt(array.length + 1);
+        word = arrayOfWords[select];
+    }
 
     public String returnStringClue() {
         getClue();
@@ -51,9 +65,10 @@ public class Hangman {
         return stringClue.trim();
     }
 
-    public boolean getWinCondition() {
+    public Object getWinCondition() {
         getClue();
         getWin();
+        getLoseNumber();
         String stringClue = "";
         for (String s : this.clue) {
             stringClue += s + " ";
@@ -64,8 +79,14 @@ public class Hangman {
         }
         if (stringClue.equals(answer)) {
             win = true;
+            return win;
+        } else if (loseNumber >= 7) {
+            win = false;
+            return win;
+        } else {
+            return null;
         }
-        return true;
+
     }
 
     public String[] getWordArr() {
@@ -75,6 +96,9 @@ public class Hangman {
     public void setClue(String guess) {
         getWordArr();
         getClue();
+        if (!Arrays.asList(wordArr).contains(guess)) {
+            loseNumber++;
+        }
         goodLetters.add(guess);
         this.clue.removeAll(clue);
 
@@ -85,6 +109,7 @@ public class Hangman {
                 this.clue.add("_");
             }
         }
+
 
 //        for (int i = 0; i < this.wordArr.length; i++) {
 //            if (wordArr[i].equals(guess)) {

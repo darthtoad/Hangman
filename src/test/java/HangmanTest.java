@@ -63,6 +63,28 @@ public class HangmanTest {
         assertEquals(true, testHangman.getWinCondition());
     }
 
+    @Test
+    public void getLoseNumber_incrementCounterIfIncorrect_2() throws Exception {
+        Hangman testHangman = new Hangman("apple");
+        testHangman.setClue("z");
+        testHangman.setClue("q");
+        assertEquals(2, testHangman.getLoseNumber());
+    }
+
+    @Test
+    public void getWinCondition_loseIfCounterIsOver7_false() throws Exception {
+        Hangman testHangman = new Hangman("apple");
+        testHangman.setClue("z");
+        testHangman.setClue("q");
+        testHangman.setClue("r");
+        testHangman.setClue("t");
+        testHangman.setClue("b");
+        testHangman.setClue("z");
+        testHangman.setClue("w");
+        assertEquals(false, testHangman.getWinCondition());
+    }
+
+
 //    @Test
 //    public void newHangman_getClue_dashes() throws Exception {
 //        Hangman testHangman = new Hangman("apple");
