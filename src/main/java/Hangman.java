@@ -2,13 +2,11 @@
  * Created by Guest on 1/3/18.
  */
 import java.util.Arrays;
-import java.util.Random;
 import java.util.List;
 import java.util.ArrayList;
 
 public class Hangman {
     private String word;
-    private String[] arrayOfWords = {"apple", "banana", "almond", "programmer", "penguin", "quayle"};
     private String[] wordArr;
     private String guess;
     private List<String> clue = new ArrayList<String>();
@@ -19,9 +17,6 @@ public class Hangman {
     public Hangman(String word) {
         this.word = word;
         this.wordArr = word.split("");
-        this.clue = clue;
-        this.win = win;
-        this.loseNumber = loseNumber;
     }
 
     public String getGuess() {
@@ -86,6 +81,7 @@ public class Hangman {
     }
 
     public String[] getWordArr() {
+
         return this.wordArr;
     }
 
@@ -117,6 +113,7 @@ public class Hangman {
     }
 
     public void setGuess(String guess) {
+
         this.guess = guess;
     }
 

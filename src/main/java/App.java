@@ -25,10 +25,10 @@ public class App {
                 if (input.length() > 1) {
                     System.out.println("Please only use one letter. No cheating!");
                 } else {
-                    appWin = newHangman.getWin();
                     newHangman.setClue(input);
                     System.out.println(newHangman.returnStringClue());
                     newHangman.getWinCondition();
+                    appWin = newHangman.getWin();
                 }
             }
             if (Boolean.valueOf(appWin.toString())) {
