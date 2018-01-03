@@ -13,7 +13,7 @@ public class Hangman {
     private String guess;
     private List<String> clue = new ArrayList<String>();
     private List<String> goodLetters = new ArrayList<String>();
-    private Boolean win = false;
+    private Boolean win = null;
     private int loseNumber = 0;
 
     public Hangman(String word) {
@@ -48,11 +48,7 @@ public class Hangman {
 //
 //    }
 
-    public void setWord(String[] array) {
-        Random random = new Random();
-        int select = random.nextInt(array.length + 1);
-        word = arrayOfWords[select];
-    }
+
 
     public String returnStringClue() {
         getClue();
