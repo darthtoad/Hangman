@@ -7,35 +7,48 @@ import static org.junit.Assert.*;
  */
 public class HangmanTest {
     @Test
-    public void newHangman_instantiatesCorrectly() throws Exception {
+    public void Hangman_instantiatesCorrectly() throws Exception {
         Hangman testHangman = new Hangman("apple");
         assertEquals(true, testHangman instanceof Hangman);
     }
 
     @Test
-    public void newHangman_getsWord_apple() {
+    public void getWord_getsWord_apple() {
         Hangman testHangman = new Hangman("apple");
         assertEquals("apple", testHangman.getWord());
     }
 
     @Test
-    public void newHangman_splitWordIntoArray_array() throws Exception {
+    public void getWordArr_splitWordIntoArray_array() throws Exception {
         Hangman testHangman = new Hangman("apple");
         assertEquals("apple".split(""), testHangman.getWordArr());
     }
 
     @Test
-    public void newHangman_setGuess_char() throws Exception {
+    public void getGuess_setAndReturnGuess_Character() throws Exception {
         Hangman testHangman = new Hangman("apple");
-        testHangman.setGuess('a');
-        assertEquals('a', testHangman.getGuess());
+        testHangman.setGuess("a");
+        assertEquals("a", testHangman.getGuess());
     }
 
     @Test
-    public void newHangman_trueGuess_a____() throws Exception {
+    public void returnStringClue_setIncorrectClue_dashes() throws Exception {
         Hangman testHangman = new Hangman("apple");
-        testHangman.setGuess('a');
-        assertEquals('a_____', testHangman.getClue());
+        testHangman.setClue("b");
+        assertEquals("_ _ _ _ _", testHangman.returnStringClue());
     }
+
+//    @Test
+//    public void newHangman_getClue_dashes() throws Exception {
+//        Hangman testHangman = new Hangman("apple");
+//        assertEquals("_ _ _ _ _", testHangman.getClue());
+//    }
+//
+//    @Test
+//    public void newHangman_trueGuess_a____() throws Exception {
+//        Hangman testHangman = new Hangman("apple");
+//        testHangman.setGuess("a");
+//        assertEquals("a_____", testHangman.getClue());
+//    }
 
 }

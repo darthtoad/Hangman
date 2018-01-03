@@ -2,18 +2,22 @@
  * Created by Guest on 1/3/18.
  */
 import java.util.Random;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Hangman {
     private String word;
     private String[] wordArr;
-    private char guess;
+    private String guess;
+    private List<String> clue = new ArrayList<String>();
 
     public Hangman(String word) {
         this.word = word;
         this.wordArr = word.split("");
+        this.clue = clue;
     }
 
-    public char getGuess() {
+    public String getGuess() {
         return this.guess;
     }
 
@@ -21,15 +25,36 @@ public class Hangman {
         return this.word;
     }
 
+    public List<String> getClue() {
+        return this.clue;
+    }
+
+    public String returnStringClue() {
+        getClue();
+        String stringClue = "";
+        for (String s : this.clue){
+            stringClue += s + " ";
+        }
+        return stringClue.trim();
+    }
+
     public String[] getWordArr() {
         return this.wordArr;
     }
 
-    public String getClue() {
-        if (this.wordArr)
+    public void setClue(String guess) {
+        getWordArr();
+        getClue();
+        for (int i = 0; i < this.wordArr.length; i++) {
+            if (wordArr[i] == guess) {
+                this.clue.add(guess);
+            } else {
+                this.clue.add("_");
+            }
+        }
     }
 
-    public void setGuess(char guess) {
+    public void setGuess(String guess) {
         this.guess = guess;
     }
 
