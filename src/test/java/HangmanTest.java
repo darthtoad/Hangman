@@ -53,6 +53,16 @@ public class HangmanTest {
         assertEquals("a p p _ _", testHangman.returnStringClue());
     }
 
+    @Test
+    public void getWinCondition_tellIfWin_true() throws Exception {
+        Hangman testHangman = new Hangman("apple");
+        testHangman.setClue("a");
+        testHangman.setClue("p");
+        testHangman.setClue("l");
+        testHangman.setClue("e");
+        assertEquals(true, testHangman.getWinCondition());
+    }
+
 //    @Test
 //    public void newHangman_getClue_dashes() throws Exception {
 //        Hangman testHangman = new Hangman("apple");
