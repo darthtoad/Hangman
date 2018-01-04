@@ -42,7 +42,7 @@ public class App {
                 } else if (choice.equals("2")) {
                     something = false;
                     System.out.println("Please write a word");
-                    word = bufferedReader.readLine();
+                    word = bufferedReader.readLine().toLowerCase();
                 } else {
                     System.out.println("Please try again");
                 }
@@ -51,12 +51,12 @@ public class App {
             Object appWin = newHangman.getWin();
             while (appWin == null) {
                 System.out.println("Guess a letter!");
-                String input = bufferedReader.readLine();
+                String input = bufferedReader.readLine().toLowerCase();
                 if (input.length() > 1) {
                     System.out.println("Please only use one letter. No cheating!");
                 } else {
                     newHangman.setClue(input);
-                    System.out.println(newHangman.returnStringClue());
+                    System.out.println(newHangman.returnStringClue() + "\nNumber of Wrong Guesses Left: " + (7 - newHangman.getLoseNumber()));
                     newHangman.getWinCondition();
                     appWin = newHangman.getWin();
                 }
