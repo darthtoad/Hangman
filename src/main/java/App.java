@@ -11,37 +11,42 @@ public class App {
     public static void main(String[] args) {
         try {
             String word = "";
+            boolean something = true;
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println("Let's play hangman! Would you like a one player or two player game? Enter 1 for one player, 2 for two players");
-            String choice = bufferedReader.readLine();
-            if (choice.equals("1")) {
-                System.out.println("What level of difficulty would you like? Please choose between 1 and 3");
-                String choice2 = bufferedReader.readLine();
-                if (choice2.equals("1")) {
-                    String[] arrayOfWords = {"apple", "banana", "almond", "programmer", "mississippi", "spotty"};
-                    Random random = new Random();
-                    int select = random.nextInt(arrayOfWords.length);
-                    word = arrayOfWords[select];
-                } else if (choice2.equals("2")) {
-                    String[] arrayOfWords = {"maneater", "penguin", "trampoline", "parachute", "penguin", "quayle"};
-                    Random random = new Random();
-                    int select = random.nextInt(arrayOfWords.length);
-                    word = arrayOfWords[select];
-                } else if (choice2.equals("3")) {
-                    String[] arrayOfWords = {"phenomenology", "transcendental", "herpetology", "quadringenarious", "coelacanth", "methaqualone"};
-                    Random random = new Random();
-                    int select = random.nextInt(arrayOfWords.length);
-                    word = arrayOfWords[select];
-                } else {
-                    word = "floccinaucinihilipilification";
-                }
-            } else if (choice.equals("2")) {
-                System.out.println("Please write a word");
-                word = bufferedReader.readLine();
-            } else {
-                System.out.println("Please try again");
-            }
 
+            while (something) {
+                System.out.println("Let's play hangman! Would you like a one player or two player game? Enter 1 for one player, 2 for two players");
+                String choice = bufferedReader.readLine();
+                if (choice.equals("1")) {
+                    something = false;
+                    System.out.println("What level of difficulty would you like? Please choose between 1 and 3");
+                    String choice2 = bufferedReader.readLine();
+                    if (choice2.equals("1")) {
+                        String[] arrayOfWords = {"apple", "banana", "almond", "programmer", "mississippi", "spotty"};
+                        Random random = new Random();
+                        int select = random.nextInt(arrayOfWords.length);
+                        word = arrayOfWords[select];
+                    } else if (choice2.equals("2")) {
+                        String[] arrayOfWords = {"maneater", "penguin", "trampoline", "parachute", "penguin", "quayle"};
+                        Random random = new Random();
+                        int select = random.nextInt(arrayOfWords.length);
+                        word = arrayOfWords[select];
+                    } else if (choice2.equals("3")) {
+                        String[] arrayOfWords = {"phenomenology", "transcendental", "herpetology", "quadringenarious", "coelacanth", "methaqualone"};
+                        Random random = new Random();
+                        int select = random.nextInt(arrayOfWords.length);
+                        word = arrayOfWords[select];
+                    } else {
+                        word = "floccinaucinihilipilification";
+                    }
+                } else if (choice.equals("2")) {
+                    something = false;
+                    System.out.println("Please write a word");
+                    word = bufferedReader.readLine();
+                } else {
+                    System.out.println("Please try again");
+                }
+            }
             Hangman newHangman = new Hangman(word.toLowerCase());
             Object appWin = newHangman.getWin();
             while (appWin == null) {
@@ -59,6 +64,7 @@ public class App {
             if (Boolean.valueOf(appWin.toString())) {
                 System.out.println("You won!");
             } else {
+                System.out.println(String.format("The word is %s", word));
                 System.out.println("Sorry, you lost!");
             }
         }
